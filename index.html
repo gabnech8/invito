@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Una piccola proposta</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #dcebd8, #f8f3e7);
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .card {
+            background: #fffdf5;
+            padding: 45px 30px;
+            border-radius: 30px;
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 15px 50px #00000015;
+            animation: comparsa 0.8s ease;
+        }
+
+        .emoji {
+            font-size: 75px;
+            margin-bottom: 20px;
+            animation: fluttua 3s ease-in-out infinite;
+        }
+
+        .sottotitolo {
+            font-size: 12px;
+            letter-spacing: 3px;
+            color: #78917a;
+        }
+
+        h1 {
+            color: #294a3a;
+            font-size: 32px;
+        }
+
+        p {
+            color: #52664e;
+            line-height: 1.7;
+            font-size: 17px;
+        }
+
+        .pulsanti {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        button {
+            border: none;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        .si {
+            background: #325d46;
+            color: white;
+        }
+
+        .no {
+            background: #e5eddf;
+            color: #325d46;
+        }
+
+        #risposta {
+            display: none;
+            animation: comparsa 0.5s ease;
+        }
+
+        .indietro {
+            background: transparent;
+            color: #78917a;
+            font-size: 14px;
+        }
+
+        @keyframes comparsa {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fluttua {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+
+        <div id="invito">
+
+            <div class="emoji">🚂</div>
+
+            <div class="sottotitolo">
+                UNA PICCOLA PROPOSTA
+            </div>
+
+            <h1>Domani ti aspetto a Portanuova e andiamo insieme in Uni?</h1>
+
+            <div class="pulsanti">
+                <button class="si" onclick="rispondi(true)">
+                    Ovvio
+                </button>
+
+                <button class="no" onclick="rispondi(false)">
+                    No
+                </button>
+            </div>
+
+        </div>
+
+        <div id="risposta">
+
+            <div class="emoji" id="reazione"></div>
+
+            <h1 id="titolo"></h1>
+
+            <p id="messaggio"></p>
+
+            <button class="indietro" onclick="ricomincia()">
+                ↩ Torna indietro
+            </button>
+
+        </div>
+
+    </div>
+
+    <script>
+        function rispondi(accettato) {
+
+            document.getElementById("invito").style.display = "none";
+            document.getElementById("risposta").style.display = "block";
+
+            if (accettato) {
+                document.getElementById("reazione").textContent = "😄";
+                document.getElementById("titolo").textContent = "Perfetto!";
+                document.getElementById("messaggio").textContent =
+                    "Scherzo, vado con Nicole";
+            } else {
+                document.getElementById("reazione").textContent = "🤨";
+                document.getElementById("titolo").textContent = "Ah, capisco...";
+                document.getElementById("messaggio").textContent =
+                    "🤨";
+            }
+        }
+
+        function ricomincia() {
+            document.getElementById("invito").style.display = "block";
+            document.getElementById("risposta").style.display = "none";
+        }
+    </script>
+
+</body>
+</html>
